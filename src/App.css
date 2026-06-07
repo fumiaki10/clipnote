@@ -325,3 +325,15 @@ body {
 .save-button:hover {
   background-color: #2563eb;
 }
+
+/* レスポンシブ対応 */
+@media(max-width:768) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    width: 200px;
+    min-width: 200px;
+  }
+}
