@@ -1,8 +1,8 @@
-function Sidebar({onClickNew}){
-  return(
+function Sidebar({ onClickNew }) {
+  return (
     <aside className="sidebar">
       <div className="sidebar-section">
-        <h1 className="app-title">clipnote</h1>
+        <h1 className="app-title">clipNote</h1>
         <button className="new-button" onClick={onClickNew}>
           +新規作成
         </button>
