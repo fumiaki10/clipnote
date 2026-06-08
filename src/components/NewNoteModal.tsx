@@ -1,9 +1,27 @@
-type NewNoteModalProps = {
-  onClose: () => void;
-};
+import { useState } from 'react'
 
+function NewNoteModal({ onClose, onSave }) {
+  const [inputText, setInputText] = useState('')
 
-function NewNoteModal({ onClose }: NewNoteModalProps) {
+  const handleSave = () => {
+    if (!inputText.trim()) {
+      alert('テキストを入力してください')
+      return
+    }
+
+    const newNote = {
+      id: Date.now(),
+      title: '新しいノート（仮）',
+      tags: ['新規'],
+      summary: inputText.substring(0, 100) + '...',
+      questions: null,
+      important: null
+    }
+
+    onSave(newNote)
+    setInputText('')
+  }
+
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -22,6 +40,8 @@ function NewNoteModal({ onClose }: NewNoteModalProps) {
 
           <textarea
             className="markdown-input"
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
             placeholder={`---
 title: タイトルを入力
 date: 2024-12-19
@@ -45,8 +65,8 @@ chat_url: https://chat.openai.com/c/xxxxxxxx
           <button className="cancel-button" onClick={onClose}>
             キャンセル
           </button>
-          <button className="save-button">
-            保存（v1では表示のみ）
+          <button className="save-button" onClick={handleSave}>
+            保存
           </button>
         </div>
       </div>
