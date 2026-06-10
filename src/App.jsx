@@ -61,13 +61,19 @@ function App() {
     setNotes([newNote, ...notes])//配列の先頭に新しいノートを追加
     setIsModalOpen(false)//モーダルを閉じる
   }
+  // 削除機能
+  const handleDeleteNote = (idToDelete) => {
+    if (window.confirm('このノートを削除してもよろしいですか？')) {
+      setNotes(notes.filter(note => note.id !== idToDelete))
+    }
+  }
 
   return (
     <div className="app-container">
       <Sidebar onClickNew={() => setIsModalOpen(true)} />
       <div className="main-content">
         <Header />
-        <MainArea notes={notes} />
+        <MainArea notes={notes} onDelete={handleDeleteNote} />
       </div>
 
       {isModalOpen && (

@@ -1,7 +1,15 @@
-function Card({ note }) {
+function Card({ note, onDelete }) {
+  const handleDelete = (e) => {
+    e.stopPropagation()
+    onDelete(note.id)
+  }
   return (
     <article className="note-card">
-      <h2 className="note-title">{note.title}</h2>
+      <div className="note-header">
+        <h2 className="note-title">{note.title}</h2>
+        <button className="delete-button" onClick={handleDelete} title="このノートを削除">×</button>
+      </div>
+
 
       <div className="note-tags">
         {note.tags.map((tag) => (
