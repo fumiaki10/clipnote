@@ -14,7 +14,7 @@ function App() {
   const [notes, setNotes] = useState(() => {
     try {
       const savedNotes = localStorage.getItem('clipnote-notes')
-      return savedNotes ? JSON.parse(savedNotes) : initialNotes
+      return savedNotes ? JSON.parse(savedNotes) : []
     } catch (error) {
       console.error('データの読み込みでエラーが発生しました', error)
       return initialNotes
