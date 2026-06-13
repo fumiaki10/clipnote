@@ -20,7 +20,8 @@ function Card({ note, onDelete, onSelect }) {
       </div>
 
 
-      <div className="note-tag">
+
+      <div className="note-tags">
         {note.tags.map((tag) => (
           <span key={tag} className="note-tag">
             {tag}
@@ -29,12 +30,25 @@ function Card({ note, onDelete, onSelect }) {
       </div>
 
       <div className="note-content">
-        <p className="note-section"><strong>要約：</strong>{note.summary}</p>
-        {note.questions && (
-          <p className="note-section"><strong>疑問点：</strong>{note.questions}</p>
+        {note.summary && (
+          <div className="note-section">
+            <span className="section-label">📝 要約</span>
+            <p className="section-text">{note.summary}</p>
+          </div>
         )}
+
+        {note.questions && (
+          <div className="note-section">
+            <span className="section-label">❓ 疑問点</span>
+            <p className="section-text">{note.questions}</p>
+          </div>
+        )}
+
         {note.important && (
-          <p className="note-section"><strong>重要な点：</strong>{note.important}</p>
+          <div className="note-section">
+            <span className="section-label">⭐ 重要な点</span>
+            <p className="section-text">{note.important}</p>
+          </div>
         )}
       </div>
     </article>
