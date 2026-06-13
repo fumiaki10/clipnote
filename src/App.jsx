@@ -59,7 +59,11 @@ function App() {
       </div>
 
       {isModalOpen && (
-        <NewNoteModal onClose={() => setIsModalOpen(false)} />
+        <NewNoteModal
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleAddNote}
+        />
+
       )}
 
       {/* 詳細表示モーダル */}
