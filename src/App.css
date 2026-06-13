@@ -218,7 +218,7 @@ body {
 
 /* モーダル */
 .modal-backdrop {
-  position: flex;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -325,6 +325,152 @@ body {
 .save-button:hover {
   background-color: #2563eb;
 }
+
+
+/* 詳細表示モーダル */
+.detail-modal-content {
+  background-color: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.detail-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background-color: #fce7f3;
+  /* カードと同じピンク系 */
+  border-radius: 16px 16px 0 0;
+}
+
+.detail-title-area {
+  flex: 1;
+  padding-right: 16px;
+}
+
+.detail-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.detail-tag {
+  background-color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  color: #6b7280;
+  border: 1px solid #fbcfe8;
+}
+
+.detail-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  padding: 16px;
+  border-left: 4px solid #93c5fd;
+}
+
+.detail-section:last-child {
+  margin-bottom: 0;
+}
+
+.detail-section-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #374151;
+  margin-bottom: 10px;
+}
+
+.detail-section-text {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.detail-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.detail-link:hover {
+  text-decoration: underline;
+}
+
+.detail-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  border-top: 1px solid #f3f4f6;
+}
+
+.detail-delete-button {
+  background: none;
+  border: 1px solid #fca5a5;
+  color: #ef4444;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.detail-delete-button:hover {
+  background-color: #fee2e2;
+}
+
+.detail-close-button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.detail-close-button:hover {
+  background-color: #2563eb;
+}
+
+/* カードのクリック可能な見た目の強化 */
+.note-card {
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
 
 /* レスポンシブ対応 */
 @media(max-width:768) {
