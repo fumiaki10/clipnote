@@ -17,7 +17,7 @@ function App() {
       return savedNotes ? JSON.parse(savedNotes) : []
     } catch (error) {
       console.error('データの読み込みでエラーが発生しました', error)
-      return initialNotes
+      return []
     }
   })
 
@@ -32,13 +32,13 @@ function App() {
 
   // 新しいノートを追加する関数
   const handleAddNote = (newNote) => {
-    setNotes([newNote, ...notes])//配列の先頭に新しいノートを追加
-    setIsModalOpen(false)//モーダルを閉じる
+    setNotes((prevNotes) => [newNote, ...prevNotes])
+    setIsModalOpen(false)
   }
   // 削除機能
   const handleDeleteNote = (idToDelete) => {
     if (window.confirm('このノートを削除してもよろしいですか？')) {
-      setNotes(notes.filter(note => note.id !== idToDelete))
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== idToDelete))
 
       if (selectedNote && selectedNote.id === idToDelete) {
         setSelectedNote(null)
