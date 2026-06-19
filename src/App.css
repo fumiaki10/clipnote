@@ -441,6 +441,17 @@ body {
   line-height: 1.4;
 }
 
+.detail-meta {
+  margin-bottom: 12px;
+}
+
+.detail-meta-text {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+
 .detail-tags {
   display: flex;
   flex-wrap: wrap;
