@@ -8,6 +8,20 @@ https://clipnote-six.vercel.app
 
 ---
 
+## 目次
+- [アプリ概要](#アプリ概要)
+- [画面イメージ](#画面イメージ)
+- [主な機能](#主な機能)
+- [入力イメージ](#入力イメージ)
+- [制作背景](#制作背景)
+- [工夫した点](#工夫した点)
+- [使用技術](#使用技術)
+- [セットアップ](#セットアップ)
+- [今後の改善予定](#今後の改善予定)
+- [制作者](#制作者)
+
+---
+
 ## アプリ概要
 プログラミング学習でMarkdownを使ってメモを取っていた中で、  
 ファイル数が増えるほど「どこに何を書いたか分からない」という課題を感じました。
@@ -20,16 +34,29 @@ https://clipnote-six.vercel.app
 ## 画面イメージ
 
 ### 一覧画面
-![ClipNote 一覧画面](docs/images/top.png)
-
-### 新規作成モーダル
-![ClipNote 新規作成モーダル](docs/images/new-note-modal.png)
+<p align="center">
+  <img src="docs/images/top.png" width="85%" alt="ClipNote 一覧画面">
+</p>
 
 ### 詳細モーダル
-![ClipNote 詳細モーダル](docs/images/detail-modal.png)
+<p align="center">
+  <img src="docs/images/detail-modal.png" width="85%" alt="ClipNote 詳細モーダル">
+</p>
+
+<details>
+<summary>その他の画面を見る</summary>
+
+### 新規作成モーダル
+<p align="center">
+  <img src="docs/images/new-note-modal.png" width="85%" alt="ClipNote 新規作成モーダル">
+</p>
 
 ### 空状態
-![ClipNote 空状態](docs/images/empty-state.png)
+<p align="center">
+  <img src="docs/images/empty-state.png" width="85%" alt="ClipNote 空状態">
+</p>
+
+</details>
 
 ---
 
@@ -46,7 +73,7 @@ https://clipnote-six.vercel.app
 ---
 
 ## 入力イメージ
-以下のようなMarkdownを貼り付けることで、ノートを作成できます。
+以下のようなMarkdownを貼り付けることで、タイトル・タグ・要約などを抽出し、ノートとして保存できます。
 
 ~~~md
 ---
@@ -54,7 +81,6 @@ title: Reactメモ
 date: 2024-12-19
 folder: 資格勉強
 tags: [基本情報, セキュリティ]
-chat_url: https://chat.openai.com/c/xxxxxxxx
 ---
 
 ## 要約
@@ -86,20 +112,17 @@ useEffectを使うべき場面はどこか。
 ## 工夫した点
 
 ### 1. Markdownから必要情報を抽出
-入力されたMarkdownから、タイトル・タグ・要約などを抽出し、  
-ノートとして見やすい形に整形して保存できるようにしました。
+フロントマターからタイトル・タグを抽出し、本文から「要約」「チャット中に出た疑問点」「重要な点」を取り出して、一覧でも内容を把握しやすい形に整理しました。
 
 ### 2. LocalStorageによるデータ永続化
-ブラウザを閉じてもノートが消えないように、  
-LocalStorageを使って自動保存する仕組みを実装しました。
+ブラウザを閉じてもノートが消えないように、LocalStorageを使って自動保存する仕組みを実装しました。
 
 ### 3. 空状態の案内表示
-初回利用時に何をすればよいか迷わないよう、  
-ノートが存在しない場合は案内メッセージを表示するようにしました。
+初回利用時に操作へ迷わないよう、ノートが0件のときは「新規作成を促すメッセージ」を表示するようにしました。
 
 ### 4. デプロイ時の不具合を通して学んだこと
 Vercelへデプロイした際、初回アクセス時に画面が正しく表示されない不具合が発生しました。  
-ローカル環境では問題が見えにくくても、本番環境では初期状態の考慮が重要であることを学びました。
+ローカル環境では見えにくい問題でも、本番環境では初期状態の考慮が重要であることを学びました。
 
 ---
 
@@ -107,7 +130,7 @@ Vercelへデプロイした際、初回アクセス時に画面が正しく表�
 - React
 - Vite
 - JavaScript / JSX
-- TypeScript（一部コンポーネント）
+- TypeScript（一部導入）
 - CSS
 - LocalStorage
 - Vercel
