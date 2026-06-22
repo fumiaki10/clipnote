@@ -6,21 +6,31 @@ function NoteDetailModal({ note, onClose, onDelete }) {
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="detail-modal-content" onClick={(e) => e.stopPropagation()}>
-
-        {/* ヘッダー部分 */}
         <div className="detail-modal-header">
           <div className="detail-title-area">
             <h2 className="detail-title">{note.title}</h2>
+
+            {(note.date || note.folder) && (
+              <div className="detail-meta">
+                {note.date && <p className="detail-meta-text">📅 {note.date}</p>}
+                {note.folder && <p className="detail-meta-text">📁 {note.folder}</p>}
+              </div>
+            )}
+
             <div className="detail-tags">
-              {note.tags.map((tag) => (
-                <span key={tag} className="detail-tag">{tag}</span>
+              {note.tags.map((tag, index) => (
+                <span key={`${tag}-${index}`} className="detail-tag">
+                  {tag}
+                </span>
               ))}
             </div>
           </div>
-          <button className="close-button" onClick={onClose}>×</button>
+
+          <button className="close-button" onClick={onClose}>
+            ×
+          </button>
         </div>
 
-        {/* 本文部分 */}
         <div className="detail-modal-body">
           {note.summary && (
             <div className="detail-section">
@@ -43,7 +53,6 @@ function NoteDetailModal({ note, onClose, onDelete }) {
             </div>
           )}
 
-          {/* ChatGPTリンク（設定されている場合） */}
           {note.chat_url && (
             <div className="detail-section">
               <h3 className="detail-section-title">🔗 元のチャット</h3>
@@ -59,7 +68,6 @@ function NoteDetailModal({ note, onClose, onDelete }) {
           )}
         </div>
 
-        {/* フッター部分 */}
         <div className="detail-modal-footer">
           <button className="detail-delete-button" onClick={handleDelete}>
             🗑️ このノートを削除
@@ -68,7 +76,6 @@ function NoteDetailModal({ note, onClose, onDelete }) {
             閉じる
           </button>
         </div>
-
       </div>
     </div>
   )
