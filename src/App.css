@@ -549,6 +549,49 @@ body {
   background-color: #2563eb;
 }
 
+.tag-button.active {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.nav-button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  font: inherit;
+}
+
+.nav-item.active {
+  background-color: rgba(59, 130, 246, 0.18);
+  font-weight: bold;
+}
+
+.nav-empty {
+  padding: 8px 12px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #666;
+}
+
+.empty-state-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.empty-state-text {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+
 
 /* レスポンシブ対応 */
 @media(max-width:768px) {
