@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 勉強用メモフォルダをgitの管理から除外
+memo/
+memoNotes/
