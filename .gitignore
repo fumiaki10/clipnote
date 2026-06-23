@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# 勉強用メモを除外
+/memoNotes/
+/memo/
