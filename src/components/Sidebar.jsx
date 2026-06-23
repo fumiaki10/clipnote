@@ -4,6 +4,7 @@ function Sidebar({
   selectedFolder,
   onSelectFolder,
   onResetFilters,
+  onClickSettings
 }) {
   return (
     <aside className="sidebar">
@@ -64,7 +65,9 @@ function Sidebar({
       </nav>
 
       <div className="sidebar-footer">
-        <span>設定</span>
+        <button className="sidebar-settings-button" onClick={onClickSettings}>
+          設定
+        </button>
       </div>
     </aside>
   )
