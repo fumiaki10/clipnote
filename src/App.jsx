@@ -36,27 +36,49 @@ function App() {
     }
   }, [notes])
 
+  const normalizedNotes = useMemo(() => {
+    return notes.map((note) => ({
+      ...note,
+      folder: note.folder?.trim() || '未分類',
+      tags: Array.isArray(note.tags) ? note.tags : []
+    }))
+  }, [notes])
+
   // 一覧用のタグ配列
   const allTags = useMemo(() => {
-    return [...new Set(notes.flatMap((note) => note.tags || []))]
-  }, [notes])
+    return [...new Set(normalizedNotes.flatMap((note) => note.tags || []))]
+  }, [normalizedNotes])
 
   // 一覧用のフォルダー配列
   const allFolders = useMemo(() => {
     return [
       ...new Set(
-        notes
+        normalizedNotes
           .map((note) => note.folder)
-          .filter((folder) => folder && folder.trim() !== '')
-      ),
+          // .filter((folder) => folder && folder.trim() !== '')
+          .sort((a, b) => a.localeCompare(b, 'ja'))
+      )
     ]
-  }, [notes])
+  }, [normalizedNotes])
+
+
+  const folderCounts = useMemo(() => {
+    return normalizedNotes.reduce((acc, note) => {
+      acc[note.folder] = (acc[note.folder] ?? 0) + 1
+      return acc
+    }, {})
+  }, [normalizedNotes])
+
+  const totalCount = normalizedNotes.length
+
+
+
 
   // フィルター済みノート一覧
   const filteredNotes = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase()
 
-    return notes.filter((note) => {
+    return normalizedNotes.filter((note) => {
       const searchTarget = [
         note.title,
         note.summary,
@@ -81,7 +103,7 @@ function App() {
       return matchesSearch && matchesTag && matchesFolder
     })
 
-  }, [notes, searchTerm, selectedTag, selectedFolder])
+  }, [normalizedNotes, searchTerm, selectedTag, selectedFolder])
 
   const hasActiveFilters =
     searchTerm.trim() !== '' || selectedTag !== 'all' || selectedFolder !== 'all'
@@ -192,15 +214,14 @@ function App() {
     setIsSettingsOpen(false)
     alert('すべてのノートを削除しました')
   }
-  useEffect(() => {
-    console.log('notes changed:', notes)
-  }, [notes])
 
   return (
     <div className="app-container">
       <Sidebar
         onClickNew={() => setIsModalOpen(true)}
         folders={allFolders}
+        folderCounts={folderCounts}
+        totalCount={totalCount}
         selectedFolder={selectedFolder}
         onSelectFolder={setSelectedFolder}
         onResetFilters={handleResetFilters}
