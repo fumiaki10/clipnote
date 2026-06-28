@@ -161,13 +161,13 @@ body {
 .main-area {
   flex: 1;
   padding: 20px;
-  background-color: #a9adb3;
+  background-color: #c9cdd4;
   overflow-y: auto;
   min-height: 0;
 }
 
 .main-box {
-  background-color: #a9adb3;
+  background-color: #c9cdd4;
   min-height: 100%;
 }
 
@@ -194,6 +194,7 @@ body {
   margin-bottom: 12px;
   gap: 8px;
 }
+
 
 .note-header .note-title {
   margin-bottom: 0;
@@ -243,15 +244,6 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
-.note-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-  gap: 8px;
-}
-
 
 .note-title {
   font-size: 16px;
@@ -320,7 +312,7 @@ body {
   font-size: 13px;
   color: #374151;
   line-height: 1.6;
-  white-space: pre-wrap;
+  white-space: normal;
 
   display: -webkit-box;
   -webkit-line-clamp: 5;
@@ -492,7 +484,7 @@ body {
   align-items: flex-start;
   padding: 24px 24px 16px;
   border-bottom: 1px solid #f3f4f6;
-  background-color: #fce7f3;
+  background-color: #152f49;
   /* カードと同じピンク系 */
   border-radius: 16px 16px 0 0;
 }
@@ -505,7 +497,7 @@ body {
 .detail-title {
   font-size: 20px;
   font-weight: bold;
-  color: #1f2937;
+  color: #fbfdff;
   margin-bottom: 12px;
   line-height: 1.4;
 }
@@ -516,7 +508,7 @@ body {
 
 .detail-meta-text {
   font-size: 14px;
-  color: #6b7280;
+  color: #ccd5e7;
   margin-bottom: 4px;
 }
 
@@ -540,6 +532,7 @@ body {
   padding: 24px;
   overflow-y: auto;
   flex: 1;
+  background-color: #c9cdd4;
 }
 
 .detail-section {
@@ -547,7 +540,7 @@ body {
   background-color: #f9fafb;
   border-radius: 10px;
   padding: 16px;
-  border-left: 4px solid #93c5fd;
+  border-left: 4px solid #87a4c5;
 }
 
 .detail-section:last-child {
