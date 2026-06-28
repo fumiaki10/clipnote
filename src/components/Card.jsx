@@ -3,6 +3,14 @@ function Card({ note, onDelete, onSelect }) {
     e.stopPropagation()
     onDelete(note.id)
   }
+  const visibleTags = note.tags?.slice(0, 3) ?? []
+  const hiddenTagCount = Math.max((note.tags?.length ?? 0) - 3, 0)
+
+  const hasImportant = Boolean(note.important)
+  const hasQuestions = Boolean(note.questions)
+  const hasChatUrl = Boolean(note.chat_url)
+
+
   return (
     <article
       className="note-card"
@@ -12,7 +20,9 @@ function Card({ note, onDelete, onSelect }) {
         <h2 className="note-title">{note.title}</h2>
         <button
           className="delete-button"
-          onClick={handleDelete}
+          onClick=
+          {handleDelete}
+          aria-label="ノートを削除"
           title="このノートを削除"
         >
           ×
@@ -22,11 +32,15 @@ function Card({ note, onDelete, onSelect }) {
 
 
       <div className="note-tags">
-        {note.tags.map((tag) => (
+        {visibleTags.map((tag) => (
           <span key={tag} className="note-tag">
             {tag}
           </span>
         ))}
+
+        {hiddenTagCount > 0 && (
+          <span className="note-tag more-tag">+{hiddenTagCount}</span>
+        )}
       </div>
 
       <div className="note-content">
@@ -36,22 +50,14 @@ function Card({ note, onDelete, onSelect }) {
             <p className="section-text">{note.summary}</p>
           </div>
         )}
-
-        {note.questions && (
-          <div className="note-section">
-            <span className="section-label">❓ 疑問点</span>
-            <p className="section-text">{note.questions}</p>
-          </div>
-        )}
-
-        {note.important && (
-          <div className="note-section">
-            <span className="section-label">⭐ 重要な点</span>
-            <p className="section-text">{note.important}</p>
-          </div>
-        )}
       </div>
-    </article>
+
+      <div className="note-card-footer">
+        {hasImportant && <span className="meta-chip important-chip">重要</span>}
+        {hasQuestions && <span className="meta-chip question-chip">疑問</span>}
+        {hasChatUrl && <span className="meta-chip chat-chip">Chat</span>}
+      </div>
+    </article >
   )
 }
 
