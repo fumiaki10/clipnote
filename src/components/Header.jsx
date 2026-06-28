@@ -1,4 +1,10 @@
-function Header({ searchTerm, onChangeSearch, tags, selectedTag, onSelectTag }) {
+function Header({
+    searchTerm,
+    onChangeSearch,
+    tags = [],
+    selectedTag,
+    onSelectTag
+}) {
     return (
         <header className="header">
             <div className="search-container">
