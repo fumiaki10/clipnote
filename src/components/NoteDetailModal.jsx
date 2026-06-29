@@ -5,6 +5,15 @@ function NoteDetailModal({ note, onClose, onDelete }) {
 
   const tags = note.tags ?? []
 
+  const rawChatUrl = typeof note.chat_url === 'string' ? note.chat_url.trim() : ''
+
+  const safeChatUrl =
+    rawChatUrl.startsWith('http://') || rawChatUrl.startsWith('https://')
+      ? rawChatUrl
+      : rawChatUrl
+        ? `https://${rawChatUrl}`
+        : ''
+
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="detail-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -64,19 +73,20 @@ function NoteDetailModal({ note, onClose, onDelete }) {
             </div>
           )}
 
-          {note.chat_url && (
+          {safeChatUrl && (
             <div className="detail-section">
               <h3 className="detail-section-title">🔗 元のチャット</h3>
               <a
-                href={note.chat_url}
+                href={safeChatUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="detail-link"
               >
-                ChatGPTで開く →
+                リンクを開く →
               </a>
             </div>
           )}
+
         </div>
 
         <div className="detail-modal-footer">
