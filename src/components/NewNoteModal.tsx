@@ -16,8 +16,10 @@ function NewNoteModal({ onClose, onSave }) {
     let extractedTags = ['未分類']
     let extractedChatUrl = ''
     let extractedSummary = ''
-    let extractedQuestions = null
-    let extractedImportant = null
+    let extractedQuestions = ''
+    let extractedImportant = ''
+    let extractedSupplement = ''
+
 
     try {
       // フロントマター抽出
@@ -51,18 +53,20 @@ function NewNoteModal({ onClose, onSave }) {
       }
 
       // 本文抽出
-      const summaryMatch = inputText.match(/##\s*要約\n([\s\S]*?)(?=\n##|$)/)
+      const summaryMatch = inputText.match(/##\s*要約\s*\n([\s\S]*?)(?=\n##|$)/)
       if (summaryMatch) {
         extractedSummary = summaryMatch[1].trim()
       } else {
         extractedSummary = inputText.substring(0, 100) + '...'
       }
 
-      const questionsMatch = inputText.match(/##\s*チャット中に出た疑問点\n([\s\S]*?)(?=\n##|$)/)
+      const questionsMatch = inputText.match(/##\s*チャット中に出た疑問点\s*\n([\s\S]*?)(?=\n##|$)/)
       if (questionsMatch) extractedQuestions = questionsMatch[1].trim()
 
-      const importantMatch = inputText.match(/##\s*重要な点\n([\s\S]*?)(?=\n##|$)/)
+      const importantMatch = inputText.match(/##\s*重要な点\s*\n([\s\S]*?)(?=\n##|$)/)
       if (importantMatch) extractedImportant = importantMatch[1].trim()
+      const supplementMatch = inputText.match(/##\s*補足\s*\n([\s\S]*?)(?=\n##|$)/)
+      if (supplementMatch) extractedSupplement = supplementMatch[1].trim()
     } catch (error) {
       console.error('Markdownの解析でエラーが発生しました:', error)
       extractedSummary = inputText.substring(0, 100) + '...'
@@ -77,7 +81,8 @@ function NewNoteModal({ onClose, onSave }) {
       chat_url: extractedChatUrl,
       summary: extractedSummary,
       questions: extractedQuestions,
-      important: extractedImportant
+      important: extractedImportant,
+      supplement: extractedSupplement,
     }
 
     onSave(newNote)
@@ -120,7 +125,11 @@ chat_url: https://chat.openai.com/c/xxxxxxxx
 ・疑問点があれば書く
 
 ## 重要な点
-・重要なポイントを箇条書き`}
+・重要なポイントを箇条書き
+
+## 補足
+・補足が必要ならここに追記
+`}
           />
         </div>
 

@@ -186,6 +186,7 @@ function App() {
           summary: note.summary ?? '',
           questions: note.questions ?? '',
           important: note.important ?? '',
+          supplement: note.supplement ?? '',
         }))
         setNotes(normalizedNotes)
         setSelectedNote(null)
