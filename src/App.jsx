@@ -241,6 +241,10 @@ function App() {
           notes={filteredNotes}
           totalNotesCount={notes.length}
           hasActiveFilters={hasActiveFilters}
+          searchTerm={searchTerm}
+          selectedTag={selectedTag}
+          selectedFolder={selectedFolder}
+          onResetFilters={handleResetFilters}
           onDelete={handleDeleteNote}
           onSelectNote={setSelectedNote}
         />
