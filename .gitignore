@@ -27,5 +27,4 @@ dist-ssr
 /memoNotes/
 /memo/
 
-#README掲載イメージ画像を除外
-/docs/images/
+
