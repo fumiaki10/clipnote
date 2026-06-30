@@ -26,3 +26,6 @@ dist-ssr
 # 勉強用メモを除外
 /memoNotes/
 /memo/
+
+#README掲載イメージ画像を除外
+/docs/images/
