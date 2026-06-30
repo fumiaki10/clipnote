@@ -3,6 +3,17 @@ function NoteDetailModal({ note, onClose, onDelete }) {
     onDelete(note.id)
   }
 
+  const tags = note.tags ?? []
+
+  const rawChatUrl = typeof note.chat_url === 'string' ? note.chat_url.trim() : ''
+
+  const safeChatUrl =
+    rawChatUrl.startsWith('http://') || rawChatUrl.startsWith('https://')
+      ? rawChatUrl
+      : rawChatUrl
+        ? `https://${rawChatUrl}`
+        : ''
+
   return (
     <div className="modal-backdrop" onClick={onClose}>
       <div className="detail-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -16,14 +27,16 @@ function NoteDetailModal({ note, onClose, onDelete }) {
                 {note.folder && <p className="detail-meta-text">📁 {note.folder}</p>}
               </div>
             )}
+            {tags.length > 0 && (
+              <div className="detail-tags">
+                {tags.map((tag, index) => (
+                  <span key={`${tag}-${index}`} className="detail-tag">
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-            <div className="detail-tags">
-              {note.tags.map((tag, index) => (
-                <span key={`${tag}-${index}`} className="detail-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
+            )}
           </div>
 
           <button className="close-button" onClick={onClose}>
@@ -53,19 +66,27 @@ function NoteDetailModal({ note, onClose, onDelete }) {
             </div>
           )}
 
-          {note.chat_url && (
+          {note.supplement && (
+            <div className="detail-section">
+              <h3 className="detail-section-title">補足の本文</h3>
+              <p className="detail-section-text">{note.supplement}</p>
+            </div>
+          )}
+
+          {safeChatUrl && (
             <div className="detail-section">
               <h3 className="detail-section-title">🔗 元のチャット</h3>
               <a
-                href={note.chat_url}
+                href={safeChatUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="detail-link"
               >
-                ChatGPTで開く →
+                リンクを開く →
               </a>
             </div>
           )}
+
         </div>
 
         <div className="detail-modal-footer">

@@ -1,6 +1,8 @@
 function Sidebar({
   onClickNew,
-  folders,
+  folders = [],
+  folderCounts = {},
+  totalCount = 0,
   selectedFolder,
   onSelectFolder,
   onResetFilters,
@@ -37,11 +39,11 @@ function Sidebar({
           <ul className="nav-list">
             <li>
               <button
-                className={`nav-item nav-button ${selectedFolder === 'all' ? 'active' : ''
-                  }`}
+                className={`nav-item nav-button ${selectedFolder === 'all' ? 'active' : ''}`}
                 onClick={() => onSelectFolder('all')}
               >
-                すべて
+                <span className="nav-item-label">すべて</span>
+                <span className="nav-count">{totalCount}</span>
               </button>
             </li>
 
@@ -49,11 +51,13 @@ function Sidebar({
               folders.map((folder) => (
                 <li key={folder}>
                   <button
-                    className={`nav-item nav-button ${selectedFolder === folder ? 'active' : ''
-                      }`}
+                    className={`nav-item nav-button ${selectedFolder === folder ? 'active' : ''}`}
                     onClick={() => onSelectFolder(folder)}
                   >
-                    {folder}
+                    <span className="nav-item-label">{folder}</span>
+                    <span className="nav-count">
+                      {folderCounts[folder] ?? 0}
+                    </span>
                   </button>
                 </li>
               ))

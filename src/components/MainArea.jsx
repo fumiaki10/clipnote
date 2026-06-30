@@ -4,14 +4,30 @@ function MainArea({
   notes,
   totalNotesCount,
   hasActiveFilters,
+  searchTeam,
+  selectedTag,
+  onResetFilters,
   onDelete,
   onSelectNote
 }) {
   return (
     <main className="main-area">
       <div className="main-box">
-        <h2 className="box-title">ノート一覧</h2>
+        <div>
+          <h2 className="box-title">ノート一覧</h2>
+          <p className="note-count">
+            {hasActiveFilters
+              ? `${notes.length} / ${totalNotesCount}件`
+              : `${totalNotesCount}件`
+            }
+          </p>
+        </div>
 
+        {hasActiveFilters && (
+          <button className="reset-filters-button" onClick={onResetFilters}>
+            絞り込み解除
+          </button>
+        )}
 
         {totalNotesCount === 0 ? (
           <div className="empty-state" style={{
