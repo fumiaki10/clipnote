@@ -108,7 +108,6 @@ body {
   flex: 1;
   min-width: 0;
   display: block;
-  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -165,34 +164,7 @@ body {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
 }
 
-.tag-filter {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  align-items: center;
-}
 
-.tag-label {
-  font-weight: bold;
-  color: #1f2937;
-  margin-right: 8px;
-}
-
-.tag-button {
-  background-color: white;
-  color: #1f2937;
-  border: 1px solid #d1d6db;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.tag-button:hover {
-  background-color: #f3f4f6;
-  border-color: #9ca3af;
-}
 
 /* メインエリア */
 
@@ -649,12 +621,6 @@ body {
   background-color: #2563eb;
 }
 
-.tag-button.active {
-  background-color: #3b82f6;
-  color: white;
-  border-color: #3b82f6;
-}
-
 .nav-item.active {
   background-color: rgba(59, 130, 246, 0.18);
   font-weight: bold;
@@ -805,6 +771,59 @@ body {
 
 .settings-button.danger:hover {
   background-color: #dc2626;
+}
+
+.header-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.header-tag-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  background-color: #ffffff;
+  color: #334155;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.header-tag-button:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+.header-tag-button.active {
+  background-color: #334155;
+  border-color: #334155;
+  color: #ffffff;
+}
+
+.header-tag-label {
+  font-weight: 500;
+}
+
+.header-tag-count {
+  font-size: 0.75rem;
+  color: inherit;
+  opacity: 0.8;
+}
+
+.header-tag-more {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background-color: #e2e8f0;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
 
 
