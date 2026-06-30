@@ -216,6 +216,35 @@ function App() {
     alert('すべてのノートを削除しました')
   }
 
+  const MAX_HEADER_TAGS = 6
+
+  const headerTagData = useMemo(() => {
+    const tagCounts = {}
+
+    notes.forEach((note) => {
+      const tags = note.tags ?? []
+
+      tags.forEach((tag) => {
+        const normalizedTag = tag.trim()
+        if (!normalizedTag) return
+
+        tagCounts[normalizedTag] = (tagCounts[normalizedTag] ?? 0) + 1
+      })
+    })
+
+    const sortedTags = Object.entries(tagCounts)
+      .sort((a, b) => b[1] - a[1])
+      .map(([tag, count]) => ({ tag, count }))
+
+    const visibleTags = sortedTags.slice(0, MAX_HEADER_TAGS)
+    const hiddenTagCount = Math.max(sortedTags.length - MAX_HEADER_TAGS, 0)
+
+    return {
+      visibleTags,
+      hiddenTagCount,
+    }
+  }, [notes])
+
   return (
     <div className="app-container">
       <Sidebar
@@ -232,10 +261,13 @@ function App() {
       <div className="main-content">
         <Header
           searchTerm={searchTerm}
+          setSelectedTag={setSelectedTag}
           onChangeSearch={setSearchTerm}
           tags={allTags}
           selectedTag={selectedTag}
-          onSelectTag={setSelectedTag}
+          visibleHeaderTags={headerTagData.visibleTags}
+          hiddenHeaderTagCount={headerTagData.hiddenTagCount}
+
         />
 
         <MainArea

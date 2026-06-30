@@ -1,41 +1,38 @@
 function Header({
     searchTerm,
-    onChangeSearch,
-    tags = [],
+    setSearchTerm,
     selectedTag,
-    onSelectTag
+    setSelectedTag,
+    visibleHeaderTags,
+    hiddenHeaderTagCount,
 }) {
     return (
         <header className="header">
-            <div className="search-container">
+            <div className="header-top">
                 <input
                     type="text"
-                    placeholder="タイトル・要約・タグ・フォルダーで検索"
                     className="search-input"
+                    placeholder="ノートを検索"
                     value={searchTerm}
-                    onChange={(e) => onChangeSearch(e.target.value)}
+                    onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </div>
 
-            <div className="tag-filter">
-                <span className="tag-label">タグ絞り込み</span>
-
-                <button
-                    className={`tag-button ${selectedTag === 'all' ? 'active' : ''}`}
-                    onClick={() => onSelectTag('all')}
-                >
-                    すべて
-                </button>
-
-                {tags.map((tag) => (
+            <div className="header-tags">
+                {visibleHeaderTags.map(({ tag, count }) => (
                     <button
                         key={tag}
-                        className={`tag-button ${selectedTag === tag ? 'active' : ''}`}
-                        onClick={() => onSelectTag(tag)}
+                        className={`header-tag-button ${selectedTag === tag ? 'active' : ''}`}
+                        onClick={() => setSelectedTag(selectedTag === tag ? 'all' : tag)}
                     >
-                        {tag}
+                        <span className="header-tag-label">#{tag}</span>
+                        <span className="header-tag-count">{count}</span>
                     </button>
                 ))}
+
+                {hiddenHeaderTagCount > 0 && (
+                    <span className="header-tag-more">+{hiddenHeaderTagCount}</span>
+                )}
             </div>
         </header>
     )
